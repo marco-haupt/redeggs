@@ -1,14 +1,14 @@
 package de.dhbw.mh.redeggs;
 
-import de.dhbw.mh.redeggs.RegularExpression.Alternation;
-import de.dhbw.mh.redeggs.RegularExpression.Concatenation;
-import de.dhbw.mh.redeggs.RegularExpression.Literal;
-import de.dhbw.mh.redeggs.RegularExpression.Star;
+import de.dhbw.mh.redeggs.RegularEggspression.Alternation;
+import de.dhbw.mh.redeggs.RegularEggspression.Concatenation;
+import de.dhbw.mh.redeggs.RegularEggspression.Literal;
+import de.dhbw.mh.redeggs.RegularEggspression.Star;
 
 /**
  * A visitor that inspects nodes of a regular expression AST and returns their string representation.
  */
-public class NodeInspector implements RegularExpression.Visitor<String> {
+public class NodeInspector implements RegularEggspression.Visitor<String> {
 
 	/**
 	 * Visits an empty word (ε) node.
@@ -17,7 +17,7 @@ public class NodeInspector implements RegularExpression.Visitor<String> {
 	 * @return the string representation "ε"
 	 */
 	@Override
-	public String visit(RegularExpression.EmptyWord emptyWord) {
+	public String visit(RegularEggspression.EmptyWord emptyWord) {
 		return "ε";
 	}
 
@@ -28,7 +28,7 @@ public class NodeInspector implements RegularExpression.Visitor<String> {
 	 * @return the string representation "∅"
 	 */
 	@Override
-	public String visit(RegularExpression.EmptySet emptySet) {
+	public String visit(RegularEggspression.EmptySet emptySet) {
 		return "∅";
 	}
 

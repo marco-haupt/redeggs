@@ -5,7 +5,7 @@ package de.dhbw.mh.redeggs;
  * exception includes information about the parsing error and the location
  * (character offset) in the input string where the error occurred.
  */
-public class RegexParseException extends Exception {
+public class RedeggsParseException extends Exception {
 
 	/**
 	 * The unique serial version identifier for this exception class.
@@ -20,7 +20,7 @@ public class RegexParseException extends Exception {
 	private final int errorOffset;
 
 	/**
-	 * Constructs a new {@code RegexParseException} with the specified detail
+	 * Constructs a new {@code RedeggsParseException} with the specified detail
 	 * message and offset.
 	 * 
 	 * @param message     the detail message, which provides more information about
@@ -29,7 +29,7 @@ public class RegexParseException extends Exception {
 	 * @param errorOffset the position (zero-based) in the input string where the
 	 *                    error occurred during parsing.
 	 */
-	public RegexParseException(String message, int errorOffset) {
+	public RedeggsParseException(String message, int errorOffset) {
 		super(message);
 		this.errorOffset = errorOffset;
 	}

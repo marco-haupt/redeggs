@@ -5,7 +5,7 @@ package de.dhbw.mh.redeggs;
  * Subclasses of this class define different types of regular expression
  * constructs such as concatenation, alternation, and literals.
  */
-public abstract class RegularExpression {
+public abstract class RegularEggspression {
 
 	/**
 	 * A visitor interface for traversing and processing different types of regular
@@ -21,7 +21,7 @@ public abstract class RegularExpression {
 		 * @param concat the concatenation node to visit
 		 * @return the result of visiting the node
 		 */
-		public default T visit(RegularExpression.Concatenation concat) {
+		public default T visit(RegularEggspression.Concatenation concat) {
 			T prefix = concat.left.accept(this);
 			T suffix = concat.right.accept(this);
 			return visitPost(concat, prefix, suffix);
@@ -33,7 +33,7 @@ public abstract class RegularExpression {
 		 * @param union the alternation node to visit
 		 * @return the result of visiting the node
 		 */
-		public default T visit(RegularExpression.Alternation union) {
+		public default T visit(RegularEggspression.Alternation union) {
 			T first = union.left.accept(this);
 			T second = union.right.accept(this);
 			return visitPost(union, first, second);
@@ -45,7 +45,7 @@ public abstract class RegularExpression {
 		 * @param star the star node to visit
 		 * @return the result of visiting the node
 		 */
-		public default T visit(RegularExpression.Star star) {
+		public default T visit(RegularEggspression.Star star) {
 			T base = star.base.accept(this);
 			return visitPost(star, base);
 		}
@@ -56,7 +56,7 @@ public abstract class RegularExpression {
 		 * @param literal the literal node to visit
 		 * @return the result of visiting the node
 		 */
-		public default T visit(RegularExpression.Literal literal) {
+		public default T visit(RegularEggspression.Literal literal) {
 			return visitPost(literal, literal.symbol);
 		}
 
@@ -66,7 +66,7 @@ public abstract class RegularExpression {
 		 * @param concat the empty word node to visit
 		 * @return the result of visiting the node
 		 */
-		public T visit(RegularExpression.EmptyWord concat);
+		public T visit(RegularEggspression.EmptyWord concat);
 
 		/**
 		 * Visits an empty set node.
@@ -74,7 +74,7 @@ public abstract class RegularExpression {
 		 * @param concat the empty set node to visit
 		 * @return the result of visiting the node
 		 */
-		public T visit(RegularExpression.EmptySet concat);
+		public T visit(RegularEggspression.EmptySet concat);
 
 		/**
 		 * Post-visit processing for concatenation nodes.
@@ -84,7 +84,7 @@ public abstract class RegularExpression {
 		 * @param suffix the result of visiting the right operand
 		 * @return the result of post-processing
 		 */
-		public T visitPost(RegularExpression.Concatenation concat, T prefix, T suffix);
+		public T visitPost(RegularEggspression.Concatenation concat, T prefix, T suffix);
 
 		/**
 		 * Post-visit processing for alternation nodes.
@@ -94,7 +94,7 @@ public abstract class RegularExpression {
 		 * @param second the result of visiting the right operand
 		 * @return the result of post-processing
 		 */
-		public T visitPost(RegularExpression.Alternation union, T first, T second);
+		public T visitPost(RegularEggspression.Alternation union, T first, T second);
 
 		/**
 		 * Post-visit processing for star nodes.
@@ -103,7 +103,7 @@ public abstract class RegularExpression {
 		 * @param base the result of visiting the base operand
 		 * @return the result of post-processing
 		 */
-		public T visitPost(RegularExpression.Star star, T base);
+		public T visitPost(RegularEggspression.Star star, T base);
 
 		/**
 		 * Post-visit processing for literal nodes.
@@ -112,7 +112,7 @@ public abstract class RegularExpression {
 		 * @param symbol  the virtual symbol of the literal
 		 * @return the result of post-processing
 		 */
-		public T visitPost(RegularExpression.Literal literal, VirtualSymbol symbol);
+		public T visitPost(RegularEggspression.Literal literal, VirtualSymbol symbol);
 	}
 
 	/**
@@ -122,13 +122,13 @@ public abstract class RegularExpression {
 	 * @param <T>     the return type of the visitor's methods
 	 * @return the result of the visitor's processing
 	 */
-	public abstract <T> T accept(RegularExpression.Visitor<T> visitor);
+	public abstract <T> T accept(RegularEggspression.Visitor<T> visitor);
 
 	/**
 	 * Represents a concatenation of two regular expressions.
 	 */
-	public static class Concatenation extends RegularExpression {
-		private final RegularExpression left, right;
+	public static class Concatenation extends RegularEggspression {
+		private final RegularEggspression left, right;
 
 		/**
 		 * Constructs a new concatenation of two regular expressions.
@@ -136,7 +136,7 @@ public abstract class RegularExpression {
 		 * @param left  the left operand of the concatenation
 		 * @param right the right operand of the concatenation
 		 */
-		public Concatenation(RegularExpression left, RegularExpression right) {
+		public Concatenation(RegularEggspression left, RegularEggspression right) {
 			super();
 			this.left = left;
 			this.right = right;
@@ -156,8 +156,8 @@ public abstract class RegularExpression {
 	/**
 	 * Represents an alternation (OR) of two regular expressions.
 	 */
-	public static class Alternation extends RegularExpression {
-		private final RegularExpression left, right;
+	public static class Alternation extends RegularEggspression {
+		private final RegularEggspression left, right;
 
 		/**
 		 * Constructs a new alternation (OR) between two regular expressions.
@@ -165,7 +165,7 @@ public abstract class RegularExpression {
 		 * @param left  the left operand of the alternation
 		 * @param right the right operand of the alternation
 		 */
-		public Alternation(RegularExpression left, RegularExpression right) {
+		public Alternation(RegularEggspression left, RegularEggspression right) {
 			super();
 			this.left = left;
 			this.right = right;
@@ -185,15 +185,15 @@ public abstract class RegularExpression {
 	/**
 	 * Represents a repetition (Kleene star) of a regular expression.
 	 */
-	public static class Star extends RegularExpression {
-		private final RegularExpression base;
+	public static class Star extends RegularEggspression {
+		private final RegularEggspression base;
 
 		/**
 		 * Constructs a new star (Kleene star) operation on the base regular expression.
 		 *
 		 * @param base the regular expression to repeat
 		 */
-		public Star(RegularExpression base) {
+		public Star(RegularEggspression base) {
 			super();
 			this.base = base;
 		}
@@ -212,7 +212,7 @@ public abstract class RegularExpression {
 	/**
 	 * Represents a literal (symbol) in the regular expression.
 	 */
-	public static class Literal extends RegularExpression {
+	public static class Literal extends RegularEggspression {
 		private final VirtualSymbol symbol;
 
 		/**
@@ -239,7 +239,7 @@ public abstract class RegularExpression {
 	/**
 	 * Represents the empty word (epsilon) in the regular expression.
 	 */
-	public static class EmptyWord extends RegularExpression {
+	public static class EmptyWord extends RegularEggspression {
 		private EmptyWord() {
 			super();
 		}
@@ -253,7 +253,7 @@ public abstract class RegularExpression {
 	/**
 	 * Represents the empty set (no valid matches) in the regular expression.
 	 */
-	public static class EmptySet extends RegularExpression {
+	public static class EmptySet extends RegularEggspression {
 		private EmptySet() {
 			super();
 		}

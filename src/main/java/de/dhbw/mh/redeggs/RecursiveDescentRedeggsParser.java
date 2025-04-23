@@ -6,9 +6,9 @@ import static de.dhbw.mh.redeggs.Range.single;
 /**
  * A parser for regular expressions using recursive descent parsing.
  * This class is responsible for converting a regular expression string into a
- * tree representation of a {@link RegularExpression}.
+ * tree representation of a {@link RegularEggspression}.
  */
-public class RecursiveDescentRegexParser {
+public class RecursiveDescentRedeggsParser {
 
 	/**
 	 * The symbol factory used to create symbols for the regular expression.
@@ -16,12 +16,12 @@ public class RecursiveDescentRegexParser {
 	protected final SymbolFactory symbolFactory;
 
 	/**
-	 * Constructs a new {@code RecursiveDescentRegexParser} with the specified
+	 * Constructs a new {@code RecursiveDescentRedeggsParser} with the specified
 	 * symbol factory.
 	 *
 	 * @param symbolFactory the factory used to create symbols for parsing
 	 */
-	public RecursiveDescentRegexParser(SymbolFactory symbolFactory) {
+	public RecursiveDescentRedeggsParser(SymbolFactory symbolFactory) {
 		this.symbolFactory = symbolFactory;
 	}
 
@@ -34,10 +34,10 @@ public class RecursiveDescentRegexParser {
 	 * operators, and groups.
 	 *
 	 * @param regex the regular expression to parse
-	 * @return the {@link RegularExpression} representation of the parsed regex
-	 * @throws RegexParseException if the parsing fails or the regex is invalid
+	 * @return the {@link RegularEggspression} representation of the parsed regex
+	 * @throws RedeggsParseException if the parsing fails or the regex is invalid
 	 */
-	public RegularExpression parse(String regex) throws RegexParseException {
+	public RegularEggspression parse(String regex) throws RedeggsParseException {
 		// TODO: Implement the recursive descent parsing to convert `regex` into an AST.
 		// This is a placeholder implementation to demonstrate how to create a symbol.
 
@@ -47,6 +47,6 @@ public class RecursiveDescentRegexParser {
 				.andNothingElse();
 
 		// Return a dummy Literal RegularExpression for now
-		return new RegularExpression.Literal(symbol);
+		return new RegularEggspression.Literal(symbol);
 	}
 }
